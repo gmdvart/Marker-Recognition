@@ -39,6 +39,6 @@ class MarkerJsonResolver(
 
     sealed class Path(val path: String) {
         class NeedMarkersClassifier : Path("needMarkersClassificator.json")
-        class OtoMarkersData : Path("otoMarkersData.json")
+        class DsClassifier : Path("dsClassificator.json")
     }
 }
