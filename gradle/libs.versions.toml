@@ -1,0 +1,13 @@
+[versions]
+tensorFLow = "2.12.0"
+koltinxSerialization = "1.6.3"
+
+[libraries]
+# KoltinX Serialization
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "koltinxSerialization" }
+# TesnsorFlow Lite
+tensorflow-lite = { group = "org.tensorflow", name = "tensorflow-lite", version.ref = "tensorFLow" }
+
+
+[plugins]
+
