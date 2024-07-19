@@ -16,10 +16,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        encodeString()
     }
 
-    private fun encodeString() {
+    private fun testJsonEncoding() {
         val jsonString = application.assets.open("dsClassificator.json")
             .bufferedReader().use {
                 it.readText()

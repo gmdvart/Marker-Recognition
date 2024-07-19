@@ -48,4 +48,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     // TensorFlow Lite
     implementation(libs.tensorflow.lite)
+    // Ktor Client
+    implementation(libs.bundles.ktorClient)
 }
