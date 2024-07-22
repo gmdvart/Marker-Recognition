@@ -6,8 +6,9 @@ import androidx.datastore.preferences.core.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class AppSettingsRepository(
+class AppSettingsRepository @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
     val appSettings: Flow<AppSettings> = dataStore.data

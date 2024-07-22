@@ -8,7 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.buzidroidapplication.di.AppComponent
 import com.example.buzidroidapplication.di.DaggerAppComponent
 
-private const val APP_SETTINGS = "settings"
+const val APP_SETTINGS = "settings"
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = APP_SETTINGS)
 
 class BuziDroidApplication : Application() {
