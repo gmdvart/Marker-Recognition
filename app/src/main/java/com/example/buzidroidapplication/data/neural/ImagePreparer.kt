@@ -3,7 +3,7 @@ package com.example.buzidroidapplication.data.neural
 import android.graphics.Bitmap
 
 class ImagePreparer {
-    private fun prepareImage(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
+    fun prepareImage(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
         val inputValue = initializeInputValue()
         val scaledBitmap = Bitmap.createScaledBitmap(bitmap, IMAGE_WIDTH, IMAGE_HEIGHT, false)
         val scaledWidth = scaledBitmap.width
