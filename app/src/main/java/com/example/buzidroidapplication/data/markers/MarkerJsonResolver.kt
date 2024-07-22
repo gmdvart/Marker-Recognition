@@ -4,8 +4,9 @@ import android.content.Context
 import com.example.buzidroidapplication.data.model.MarkerInfo
 import com.example.buzidroidapplication.data.model.MarkerModel
 import kotlinx.serialization.json.Json
+import javax.inject.Inject
 
-class MarkerJsonResolver(
+class MarkerJsonResolver @Inject constructor(
     private val context: Context
 ) {
     fun resolveMarkers(path: Path): List<MarkerModel> {
