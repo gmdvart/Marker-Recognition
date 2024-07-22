@@ -4,8 +4,9 @@ import com.example.buzidroidapplication.data.network.MarkerService
 import com.example.buzidroidapplication.domain.util.MarkerSendResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class SendDataUseCase(
+class SendDataUseCase @Inject constructor(
     private val markerService: MarkerService
 ) {
     suspend operator fun invoke(

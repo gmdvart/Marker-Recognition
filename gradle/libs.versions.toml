@@ -4,6 +4,7 @@ koltinxSerialization = "1.6.3"
 ktor = "2.3.12"
 dataStore = "1.1.1"
 kotlin = "2.0.0"
+dagger = "2.51.1"
 
 [libraries]
 # KoltinX Serialization
@@ -18,6 +19,9 @@ ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", versi
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 # DataStore
 datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
+# Dagger 2
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 
 [plugins]
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("kotlin-kapt")
 }
 
 android {
@@ -52,4 +53,7 @@ dependencies {
     implementation(libs.bundles.ktorClient)
     // Preferences DataStore
     implementation(libs.datastore.preferences)
+    // Dagger 2
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

@@ -4,6 +4,7 @@ import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import javax.inject.Inject
 
 interface MarkerService {
     suspend fun sendMarker(
@@ -22,7 +23,7 @@ interface MarkerService {
     }
 }
 
-class DefaultMarkerService(
+class DefaultMarkerService @Inject constructor(
     private val client: HttpClient
 ) : MarkerService {
     override suspend fun sendMarker(
