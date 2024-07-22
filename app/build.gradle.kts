@@ -50,4 +50,6 @@ dependencies {
     implementation(libs.tensorflow.lite)
     // Ktor Client
     implementation(libs.bundles.ktorClient)
+    // Preferences DataStore
+    implementation(libs.datastore.preferences)
 }
