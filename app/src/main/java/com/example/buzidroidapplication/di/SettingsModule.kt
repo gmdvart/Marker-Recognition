@@ -12,7 +12,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class SettingsModule {
+object SettingsModule {
     @Provides
     fun providePreferencesDataStore(context: Context): DataStore<Preferences> {
         return PreferenceDataStoreFactory.create(

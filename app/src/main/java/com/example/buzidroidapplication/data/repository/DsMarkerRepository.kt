@@ -2,9 +2,11 @@ package com.example.buzidroidapplication.data.repository
 
 import com.example.buzidroidapplication.data.markers.MarkerJsonResolver
 import com.example.buzidroidapplication.data.model.MarkerModel
+import com.example.buzidroidapplication.di.DsMarkers
 import com.example.buzidroidapplication.domain.repository.MarkerRepository
 import javax.inject.Inject
 
+@DsMarkers
 class DsMarkerRepository @Inject constructor(
     markerJsonResolver: MarkerJsonResolver
 ) : MarkerRepository {

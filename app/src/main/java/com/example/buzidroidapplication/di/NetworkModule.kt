@@ -10,7 +10,7 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 @Module
-abstract class NetworkModule {
+object NetworkModule {
     @Provides
     fun provideHttpClient(): HttpClient = HttpClient(Android) {
         install(Logging) {
