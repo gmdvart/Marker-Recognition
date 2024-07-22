@@ -1,8 +1,9 @@
 package com.example.buzidroidapplication.data.neural
 
 import android.graphics.Bitmap
+import javax.inject.Inject
 
-class ImagePreparer {
+class ImagePreparer @Inject constructor() {
     fun prepareImage(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
         val inputValue = initializeInputValue()
         val scaledBitmap = Bitmap.createScaledBitmap(bitmap, IMAGE_WIDTH, IMAGE_HEIGHT, false)

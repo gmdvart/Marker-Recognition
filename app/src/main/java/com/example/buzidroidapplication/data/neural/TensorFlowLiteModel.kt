@@ -6,8 +6,9 @@ import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.ByteBuffer
 import java.nio.channels.FileChannel
+import javax.inject.Inject
 
-class TensorFlowLiteModel(
+class TensorFlowLiteModel @Inject constructor(
     private val context: Context
 ) {
     private var interpreter: Interpreter? = null

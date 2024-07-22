@@ -5,8 +5,9 @@ import com.example.buzidroidapplication.data.neural.ImagePreparer
 import com.example.buzidroidapplication.data.neural.TensorFlowLiteModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class GetPredictionIndexUseCase(
+class GetPredictionIndexUseCase @Inject constructor(
     private val tensorFlowLiteModel: TensorFlowLiteModel,
     private val imagePreparer: ImagePreparer
 ) {
