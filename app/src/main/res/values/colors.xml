@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<!--    App Theme Palette-->
+    <color name="brand">#FFF3CB01</color>
+    <color name="background">#FFE7E7E7</color>
 </resources>
