@@ -1,9 +1,7 @@
 package com.example.buzidroidapplication.ui.recognize_feature.screen
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +14,8 @@ import coil.load
 import com.example.buzidroidapplication.R
 import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentMainScreenBinding
-import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureAction
-import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureState
+import com.example.buzidroidapplication.ui.recognize_feature.Action
+import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -61,6 +59,7 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
         toolBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.result_item -> {
+                    viewModel.onAction(action = Action.StartRecognition(paintView.save()))
                     ResultDialogFragment.newInstance().show(parentFragmentManager, ResultDialogFragment.TAG)
                     true
                 }
@@ -86,14 +85,14 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
         }
 
         viewModel.state.collectLatestState { state ->
-            if (state is RecognizeFeatureState.Ready)
+            if (state is State.Ready)
                 markerImageView.load(state.currentMarker.drawableId) { crossfade(true) }
         }
     }
 
     private fun FragmentMainScreenBinding.setUpRandomMarkerButton() {
         randomMarkImageButton.setOnClickListener {
-            viewModel.onAction(action = RecognizeFeatureAction.SelectRandom)
+            viewModel.onAction(action = Action.SelectRandom)
         }
     }
 

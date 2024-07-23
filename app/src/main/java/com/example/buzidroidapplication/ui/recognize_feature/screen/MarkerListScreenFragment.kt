@@ -2,7 +2,6 @@ package com.example.buzidroidapplication.ui.recognize_feature.screen
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.buzidroidapplication.R
 import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentMarkerListScreenBinding
-import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureAction
-import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureState
+import com.example.buzidroidapplication.ui.recognize_feature.Action
+import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
 import com.example.buzidroidapplication.ui.recognize_feature.components.MarkerListViewController
 import kotlinx.coroutines.flow.Flow
@@ -51,12 +50,12 @@ class MarkerListScreenFragment : Fragment() {
         setUpToolBar()
 
         val markerListViewController = MarkerListViewController(recyclerView) {
-            viewModel.onAction(action = RecognizeFeatureAction.SelectById(it.id))
+            viewModel.onAction(action = Action.SelectById(it.id))
             findNavController().navigate(R.id.markerListScreenFragment_to_mainScreenFragment)
         }
 
         viewModel.state.collectLatestState {
-            if (it is RecognizeFeatureState.Ready)
+            if (it is State.Ready)
                 markerListViewController.updateMarkerList(it.markerList)
         }
     }

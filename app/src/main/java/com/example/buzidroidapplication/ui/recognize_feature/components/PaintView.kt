@@ -59,10 +59,10 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     override fun onDraw(canvas: Canvas) {
         canvas.save()
-        globalCanvas.drawColor(Defaults.CANVAS_BACKGROUND_COLOR)
+//        globalCanvas.drawColor(Defaults.CANVAS_BACKGROUND_COLOR)
 
         for (path in paths)
-            globalCanvas.drawPath(path, paintBrush)
+            canvas.drawPath(path, paintBrush)
 
         canvas.drawBitmap(bitmap, 0f, 0f, bitmapPaintBrush)
         canvas.restore()
@@ -117,7 +117,7 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         const val IS_ANTI_ALIAS = true
         const val IS_DITHER = true
         const val PAINT_BRUSH_COLOR = Color.BLACK
-        const val CANVAS_BACKGROUND_COLOR = Color.WHITE
+        const val CANVAS_BACKGROUND_COLOR = Color.BLACK
         const val STROKE_WIDTH = 16f
         const val ALPHA = 0xFF
         val STYLE = Paint.Style.STROKE

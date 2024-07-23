@@ -14,4 +14,6 @@
     <string name="send_result">Send</string>
     <string name="expected_answer">Expected answer is</string>
     <string name="actual_answer">Actual answer is</string>
+    <string name="correct_answer">CORRECT</string>
+    <string name="incorrect_answer">INCORRECT</string>
 </resources>
