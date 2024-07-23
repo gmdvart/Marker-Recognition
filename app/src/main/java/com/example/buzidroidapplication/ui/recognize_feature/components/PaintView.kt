@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.abs
@@ -27,10 +28,13 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         alpha = Defaults.ALPHA
     }
 
-    private val paths = mutableListOf<Path>()
-    private lateinit var globalCanvas: Canvas
-    private lateinit var bitmap: Bitmap
     private val bitmapPaintBrush = Paint(Paint.DITHER_FLAG)
+
+    companion object {
+        private val paths = mutableListOf<Path>()
+        private lateinit var globalCanvas: Canvas
+        private lateinit var bitmap: Bitmap
+    }
 
     fun create(width: Int, height: Int) {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
