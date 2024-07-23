@@ -11,7 +11,7 @@ class GetMarkersUseCase @Inject constructor(
     @param:DsMarkers private val dsMarkerRepository: MarkerRepository,
     @param:NeedMarkers private val needMarkerRepository: MarkerRepository
 ) {
-    fun invoke(isPredictionMode: Boolean = false): List<MarkerUiModel> {
+    operator fun invoke(isPredictionMode: Boolean = false): List<MarkerUiModel> {
         val markers = if (isPredictionMode) dsMarkerRepository.getAllMarkers()
         else needMarkerRepository.getAllMarkers()
 

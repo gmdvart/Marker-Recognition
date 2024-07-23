@@ -6,7 +6,6 @@ import com.example.buzidroidapplication.di.DsMarkers
 import com.example.buzidroidapplication.domain.repository.MarkerRepository
 import javax.inject.Inject
 
-@DsMarkers
 class DsMarkerRepository @Inject constructor(
     markerJsonResolver: MarkerJsonResolver
 ) : MarkerRepository {

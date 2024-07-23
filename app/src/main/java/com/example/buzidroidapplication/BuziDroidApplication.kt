@@ -19,9 +19,10 @@ class BuziDroidApplication : Application() {
         super.onCreate()
     }
 
-    val Context.appComponent: AppComponent
-        get() = when (val context = this) {
-            is BuziDroidApplication -> { context.appComponent }
-            else -> { (context.applicationContext as BuziDroidApplication).appComponent }
-        }
 }
+
+val Context.appComponent: AppComponent
+    get() = when (val context = this) {
+        is BuziDroidApplication -> { context.appComponent }
+        else -> { (context.applicationContext as BuziDroidApplication).appComponent }
+    }
