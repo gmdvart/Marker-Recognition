@@ -1,6 +1,7 @@
 package com.example.buzidroidapplication.data.markers
 
 import android.content.Context
+import android.util.Log
 import com.example.buzidroidapplication.data.model.MarkerInfo
 import com.example.buzidroidapplication.data.model.MarkerModel
 import kotlinx.serialization.json.Json
@@ -18,13 +19,19 @@ class MarkerJsonResolver @Inject constructor(
 
         val markersMap = Json.decodeFromString<Map<Int, MarkerInfo>>(jsonString)
 
-        val markerModel = markersMap.map { markerEntry ->
+        val markerModel = mutableListOf<MarkerModel>()
+        for (markerEntry in markersMap.entries) {
             val info = markerEntry.value
-            MarkerModel(
-                id = markerEntry.key,
-                info = info,
-                drawableId = getDrawableIdByName(info.fileName)
-            )
+            val drawable = getDrawableIdByName(info.fileName)
+            if (drawable != 0) {
+                markerModel.add(
+                    MarkerModel(
+                        id = markerEntry.key,
+                        info = info,
+                        drawableId = getDrawableIdByName(info.fileName)
+                    )
+                )
+            }
         }
 
         return markerModel

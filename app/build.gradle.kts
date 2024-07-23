@@ -58,4 +58,6 @@ dependencies {
     // Dagger 2
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+    // Coil
+    implementation(libs.coil)
 }

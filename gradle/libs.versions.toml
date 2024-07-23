@@ -7,6 +7,7 @@ kotlin = "2.0.0"
 dagger = "2.51.1"
 fragmentKtx = "1.8.1"
 lifecycleViewModelKtx = "2.8.3"
+coil = "2.7.0"
 
 [libraries]
 # AndroidX Ktx
@@ -27,6 +28,8 @@ datastore-preferences = { group = "androidx.datastore", name = "datastore-prefer
 # Dagger 2
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
+# Coil
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 
 [plugins]
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
