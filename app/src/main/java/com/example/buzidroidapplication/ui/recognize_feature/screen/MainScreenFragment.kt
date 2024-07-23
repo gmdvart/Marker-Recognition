@@ -29,6 +29,7 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
     private lateinit var binding: FragmentMainScreenBinding
 
     private val viewModel by activityViewModels<RecognizeFeatureViewModel> { factory }
+
     @Inject
     lateinit var factory: RecognizeFeatureViewModel.Factory
 
@@ -50,9 +51,27 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
     }
 
     private fun FragmentMainScreenBinding.setUpState() {
+        setUpToolBar()
         setUpPainter()
         setUpCurrentMarkerDisplay()
         setUpRandomMarkerButton()
+    }
+
+    private fun FragmentMainScreenBinding.setUpToolBar() {
+        toolBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.result_item -> {
+                    ResultDialogFragment.newInstance().show(parentFragmentManager, ResultDialogFragment.TAG)
+                    true
+                }
+                R.id.settings_item -> {
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
     }
 
     private fun FragmentMainScreenBinding.setUpPainter() {
@@ -66,9 +85,9 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
             findNavController().navigate(R.id.mainScreen_to_markerListScreen)
         }
 
-        viewModel.state.collectLatestState {
-            if (it is RecognizeFeatureState.Ready)
-                markerImageView.load(it.currentMarker.drawableId) { crossfade(true) }
+        viewModel.state.collectLatestState { state ->
+            if (state is RecognizeFeatureState.Ready)
+                markerImageView.load(state.currentMarker.drawableId) { crossfade(true) }
         }
     }
 

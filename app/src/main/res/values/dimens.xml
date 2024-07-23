@@ -5,4 +5,6 @@
     <dimen name="elevation">2dp</dimen>
     <dimen name="cardCornerRadius">24dp</dimen>
     <dimen name="minRandomMarkerButtonWidth">96dp</dimen>
+    <dimen name="minDialogWindowWidth">256dp</dimen>
+    <dimen name="minDialogWindowHeight">288dp</dimen>
 </resources>

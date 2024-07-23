@@ -10,4 +10,8 @@
     <string name="clear_action">Clear action</string>
     <string name="marker_name">Marker name</string>
     <string name="select_marker">Select Marker</string>
+
+    <string name="send_result">Send</string>
+    <string name="expected_answer">Expected answer is</string>
+    <string name="actual_answer">Actual answer is</string>
 </resources>

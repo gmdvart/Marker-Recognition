@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@drawable/result_window_background"
+        tools:context=".ui.recognize_feature.screen.ResultDialogFragment"
+        tools:layout_gravity="center">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/result_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/minDialogWindowWidth"
+            android:minHeight="@dimen/minDialogWindowHeight"
+            android:padding="@dimen/padding"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_gravity="center"
+            tools:visibility="visible">
+
+        <TextView
+                android:id="@+id/summary_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Material3.HeadlineSmall"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/expected_answer_title_text_view"
+                tools:text="INCORRECT"/>
+
+        <TextView
+                android:id="@id/expected_answer_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expected_answer"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                app:layout_constraintStart_toStartOf="@id/send_button"
+                app:layout_constraintBottom_toTopOf="@id/expected_answer_text_view"/>
+
+        <TextView
+                android:id="@+id/expected_answer_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin"
+                app:layout_constraintStart_toStartOf="@id/send_button"
+                app:layout_constraintBottom_toTopOf="@+id/actual_answer_title_text_view"
+                tools:text="Marker 1"/>
+
+        <TextView
+                android:id="@id/actual_answer_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/actual_answer"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                app:layout_constraintStart_toStartOf="@id/send_button"
+                app:layout_constraintBottom_toTopOf="@id/actual_answer_text_view"/>
+
+        <TextView
+                android:id="@+id/actual_answer_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin"
+                app:layout_constraintStart_toStartOf="@id/send_button"
+                app:layout_constraintBottom_toTopOf="@+id/send_button"
+                tools:text="Marker 2"/>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/send_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/send_result"
+                android:enabled="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_gravity="center"
+            tools:visibility="invisible"/>
+</FrameLayout>
