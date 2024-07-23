@@ -47,6 +47,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     // Android Ktx
     implementation(libs.bundles.androidKtx)
+    // Jetpack Navigation
+    implementation(libs.bundles.navigation)
     // KotlinX Serialization
     implementation(libs.kotlinx.serialization.json)
     // TensorFlow Lite

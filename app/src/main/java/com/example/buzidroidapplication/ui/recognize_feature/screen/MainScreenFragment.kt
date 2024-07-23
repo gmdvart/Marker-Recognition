@@ -11,6 +11,8 @@ import android.view.ViewTreeObserver
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.buzidroidapplication.R
 import com.example.buzidroidapplication.appComponent
@@ -61,7 +63,9 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
     }
 
     private fun FragmentMainScreenBinding.setUpCurrentMarkerDisplay() {
-        markerImageView.setOnClickListener {  }
+        markerImageView.setOnClickListener {
+            findNavController().navigate(R.id.mainScreen_to_markerListScreen)
+        }
 
         viewModel.state.collectLatestState {
             if (it is RecognizeFeatureState.Ready)

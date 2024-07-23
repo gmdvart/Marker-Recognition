@@ -1,9 +1,12 @@
 package com.example.buzidroidapplication.ui.recognize_feature
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.buzidroidapplication.data.repository.AppSettingsRepository
 import com.example.buzidroidapplication.domain.recognize_feature.RecognizeFeatureUseCases
+import com.example.buzidroidapplication.ui.recognize_feature.screen.MarkerListScreenFragment
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -42,13 +45,13 @@ class RecognizeFeatureViewModel(
 
     private fun performAction(
         action: RecognizeFeatureAction,
-        readyState: RecognizeFeatureState.Ready
+        readyState: RecognizeFeatureState.Ready,
     ): RecognizeFeatureState.Ready = when (action) {
         is RecognizeFeatureAction.SelectRandom -> {
             readyState.copy(currentMarker = recognizeFeatureUseCases.getRandomMarker())
         }
         is RecognizeFeatureAction.SelectById -> {
-            val marker = recognizeFeatureUseCases.getMarkerById(action.markerId)
+            val marker = readyState.markerList.find { it.id == action.markerId }
             if (marker != null) readyState.copy(currentMarker = marker)
             else readyState
         }

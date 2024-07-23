@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.buzidroidapplication.R
 import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentMarkerListScreenBinding
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureAction
@@ -50,7 +52,9 @@ class MarkerListScreenFragment : Fragment() {
 
         val markerListViewController = MarkerListViewController(recyclerView) {
             viewModel.onAction(action = RecognizeFeatureAction.SelectById(it.id))
+            findNavController().navigate(R.id.markerListScreenFragment_to_mainScreenFragment)
         }
+
         viewModel.state.collectLatestState {
             if (it is RecognizeFeatureState.Ready)
                 markerListViewController.updateMarkerList(it.markerList)
@@ -59,7 +63,7 @@ class MarkerListScreenFragment : Fragment() {
 
     private fun FragmentMarkerListScreenBinding.setUpToolBar() {
         toolBar.setNavigationOnClickListener {
-
+            findNavController().navigate(R.id.markerListScreenFragment_to_mainScreenFragment)
         }
     }
 
