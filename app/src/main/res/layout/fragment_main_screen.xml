@@ -18,6 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
+                app:title="@string/app_name"
                 app:menu="@menu/top_bar_menu"/>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Buzi Droid</string>
+    <string name="app_name">Buzzi2</string>
 
     <string name="result">Result</string>
     <string name="settings">Settings</string>
@@ -8,4 +8,6 @@
     <string name="undo_action">Undo action</string>
     <string name="erase_action">Erase action</string>
     <string name="clear_action">Clear action</string>
+    <string name="marker_name">Marker name</string>
+    <string name="select_marker">Select Marker</string>
 </resources>
