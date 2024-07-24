@@ -6,7 +6,9 @@ import com.example.buzidroidapplication.data.model.MarkerInfo
 import com.example.buzidroidapplication.data.model.MarkerModel
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MarkerJsonResolver @Inject constructor(
     private val context: Context
 ) {

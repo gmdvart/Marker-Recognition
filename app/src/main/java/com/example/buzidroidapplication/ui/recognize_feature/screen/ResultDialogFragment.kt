@@ -8,16 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.buzidroidapplication.R
 import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentResultDialogBinding
+import com.example.buzidroidapplication.ui.recognize_feature.Action
 import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
 import com.example.buzidroidapplication.ui.utils.collectLatestState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ResultDialogFragment : DialogFragment() {
@@ -25,6 +22,7 @@ class ResultDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentResultDialogBinding
 
     private val viewModel by activityViewModels<RecognizeFeatureViewModel> { factory }
+
     @Inject
     lateinit var factory: RecognizeFeatureViewModel.Factory
 
@@ -56,10 +54,12 @@ class ResultDialogFragment : DialogFragment() {
 
     private fun FragmentResultDialogBinding.setUpResultWindow(readyState: State.Ready) {
         val recognitionState = readyState.recognition
-        if (recognitionState is State.Recognition.Intent && recognitionState.recognizedMarker != null) {
+        if (recognitionState is State.Recognition.Intent && !recognitionState.recognizing) {
             progressBar.visibility = View.INVISIBLE
 
-            val isAnswerCorrect = recognitionState.recognizedMarker.id == readyState.currentMarker.id
+            val isAnswerCorrect = recognitionState.recognizedMarker != null &&
+                    recognitionState.recognizedMarker.id == readyState.currentMarker.id
+
             if (isAnswerCorrect) {
                 summaryTextView.setTextColor(Color.GREEN)
                 summaryTextView.text = getText(R.string.correct_answer)
@@ -68,7 +68,8 @@ class ResultDialogFragment : DialogFragment() {
                 summaryTextView.text = getText(R.string.incorrect_answer)
             }
 
-            actualAnswerTextView.text = recognitionState.recognizedMarker.fullName
+            actualAnswerTextView.text = if (recognitionState.recognizedMarker == null) getString(R.string.unknown_marker)
+            else recognitionState.recognizedMarker.fullName
             expectedAnswerTextView.text = readyState.currentMarker.fullName
 
             resultLayout.visibility = View.VISIBLE
@@ -77,6 +78,10 @@ class ResultDialogFragment : DialogFragment() {
 
     private fun FragmentResultDialogBinding.setUpSendButton(readyState: State.Ready) {
         sendButton.isEnabled = readyState.isAbleToSendData
+        sendButton.setOnClickListener {
+            viewModel.onAction(action = Action.SendData)
+            dismiss()
+        }
     }
 
     companion object {

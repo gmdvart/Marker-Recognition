@@ -1,6 +1,7 @@
 package com.example.buzidroidapplication.ui.recognize_feature
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -32,6 +33,7 @@ class RecognizeFeatureViewModel(
 
                     State.Ready(
                         !settings.predictionModeEnabled, // We can only send data when prediction mode is disabled
+                        settings.userName,
                         markerList,
                         randomMarker
                     )
@@ -61,12 +63,15 @@ class RecognizeFeatureViewModel(
         is Action.SelectRandom -> {
             performSelectRandomMarkerAction(readyState)
         }
+
         is Action.SelectById -> {
             performSelectionByIdAction(readyState, action.markerId)
         }
+
         is Action.StartRecognition -> {
             performStartRecognitionAction(readyState, action.bitmap)
         }
+
         is Action.SendData -> {
             performSendDataAction(readyState)
         }
@@ -94,13 +99,15 @@ class RecognizeFeatureViewModel(
         }
 
         viewModelScope.launch {
+            val dataSetMarkers = recognizeFeatureUseCases.getMarkers(true)
             delay(Duration.ofSeconds(1))
 
             recognizeFeatureUseCases
-                .getPredictionIndex(bitmap, readyState.markerList.size)
+                .getPredictionIndex(bitmap, dataSetMarkers.size)
                 .collectLatest { index ->
                     _state.update {
-                        val recognizedMarker = readyState.markerList[index]
+                        val recognizedMarker = dataSetMarkers[index]
+
                         readyState.copy(
                             recognition = State.Recognition.Intent(
                                 recognizing = false,
@@ -115,8 +122,7 @@ class RecognizeFeatureViewModel(
     }
 
     private fun performSendDataAction(readyState: State.Ready): State.Ready {
-        _state.update { readyState.copy(sendResult = MarkerSendResult.Idle) }
-
+        Log.d("${RecognizeFeatureViewModel::class.simpleName}", "Click")
         viewModelScope.launch {
             if (readyState.recognition is State.Recognition.Intent) {
                 val recognizedMarker = readyState.recognition.recognizedMarker
@@ -126,10 +132,13 @@ class RecognizeFeatureViewModel(
                         .sendData(
                             url = MarkerHttpRoutes.GLOBAL_URL,
                             fileName = readyState.currentMarker.fileName,
+                            userName = readyState.userName,
                             bitmap = readyState.recognition.bitmap,
                             isRecognitionCorrect = it.id == readyState.currentMarker.id
                         ).collectLatest { result ->
-                            _state.update { readyState.copy(sendResult = result) }
+                            _state.update {
+                                readyState.copy(sendResult = result)
+                            }
                         }
                 }
             }

@@ -2,11 +2,13 @@ package com.example.buzidroidapplication.ui.recognize_feature.screen
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,6 +16,7 @@ import coil.load
 import com.example.buzidroidapplication.R
 import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentMainScreenBinding
+import com.example.buzidroidapplication.domain.util.MarkerSendResult
 import com.example.buzidroidapplication.ui.recognize_feature.Action
 import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
@@ -50,6 +53,22 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
     }
 
     private fun FragmentMainScreenBinding.setUpState() {
+        collectLatestState(viewModel.state) { state ->
+            if (state is State.Ready) {
+                markerImageView.load(state.currentMarker.drawableId) { crossfade(true) }
+
+                when (val sendResult = state.sendResult) {
+                    is MarkerSendResult.Success -> {
+                        Toast.makeText(requireContext(), "Result was sent successfully!", Toast.LENGTH_LONG).show()
+                    }
+                    is MarkerSendResult.Failed -> {
+                        Toast.makeText(requireContext(), "Failed to sent result: ${sendResult.cause}", Toast.LENGTH_LONG).show()
+                    }
+                    is MarkerSendResult.Idle -> {}
+                }
+            }
+        }
+
         setUpToolBar()
         setUpPainter()
         setUpCurrentMarkerDisplay()
@@ -84,11 +103,6 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
     private fun FragmentMainScreenBinding.setUpCurrentMarkerDisplay() {
         markerImageView.setOnClickListener {
             findNavController().navigate(R.id.mainScreen_to_markerListScreen)
-        }
-
-        collectLatestState(viewModel.state) { state ->
-            if (state is State.Ready)
-                markerImageView.load(state.currentMarker.drawableId) { crossfade(true) }
         }
     }
 

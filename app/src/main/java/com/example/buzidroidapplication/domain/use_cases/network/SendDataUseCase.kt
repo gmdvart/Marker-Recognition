@@ -15,19 +15,25 @@ class SendDataUseCase @Inject constructor(
     suspend operator fun invoke(
         url: String,
         fileName: String,
+        userName: String,
         bitmap: Bitmap,
         isRecognitionCorrect: Boolean
     ): Flow<MarkerSendResult> = flow {
         emit(MarkerSendResult.Idle)
 
+        if (userName.isBlank()) {
+            emit(MarkerSendResult.Failed("User name cannot by empty!"))
+            return@flow
+        }
+
         val suffix = if (isRecognitionCorrect) "_Pos_" else "_Neg_"
 
         val byteArray = imageCompressor.compressImage(bitmap)
-        val result = markerService.sendMarker(url = url, fileName = suffix + fileName, bodyByteArray = byteArray)
+        val result = markerService.sendMarker(url = url, fileName = suffix + fileName + "_$userName", bodyByteArray = byteArray)
 
         when (result) {
             is MarkerService.Result.Success<*> -> { emit(MarkerSendResult.Success) }
-            is MarkerService.Result.Error -> { emit(MarkerSendResult.Failed) }
+            is MarkerService.Result.Error -> { emit(MarkerSendResult.Failed(result.message ?: "An unknown cause occurred")) }
         }
     }
 }

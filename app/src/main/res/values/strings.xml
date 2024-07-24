@@ -13,6 +13,7 @@
     <string name="select_marker">Select Marker</string>
     <!--    Result window-->
     <string name="send_result">Send</string>
+    <string name="unknown_marker">Unknown marker</string>
     <string name="expected_answer">Expected answer is</string>
     <string name="actual_answer">Actual answer is</string>
     <string name="correct_answer">CORRECT</string>
