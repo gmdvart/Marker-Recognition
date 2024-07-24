@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.buzidroidapplication.ui.recognize_feature.screen.MainScreenFragment
 import com.example.buzidroidapplication.ui.recognize_feature.screen.MarkerListScreenFragment
 import com.example.buzidroidapplication.ui.recognize_feature.screen.ResultDialogFragment
-import com.example.buzidroidapplication.ui.settings_feature.UserNameDialogFragment
+import com.example.buzidroidapplication.ui.settings_feature.screen.UserNameDialogFragment
 import com.example.buzidroidapplication.ui.settings_feature.screen.SettingsScreenFragment
 import dagger.BindsInstance
 import dagger.Component

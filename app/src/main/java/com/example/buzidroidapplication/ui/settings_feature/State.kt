@@ -1,4 +1,4 @@
-package com.example.buzidroidapplication.domain.settings_feature
+package com.example.buzidroidapplication.ui.settings_feature
 
 sealed interface State {
     data object Loading : State

@@ -3,9 +3,7 @@ package com.example.buzidroidapplication.ui.settings_feature
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.buzidroidapplication.domain.settings_feature.Action
 import com.example.buzidroidapplication.domain.settings_feature.SettingsFeatureUseCases
-import com.example.buzidroidapplication.domain.settings_feature.State
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

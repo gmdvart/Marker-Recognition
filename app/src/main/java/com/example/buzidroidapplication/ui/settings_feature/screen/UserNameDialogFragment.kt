@@ -1,4 +1,4 @@
-package com.example.buzidroidapplication.ui.settings_feature
+package com.example.buzidroidapplication.ui.settings_feature.screen
 
 import android.content.Context
 import android.os.Bundle
@@ -11,8 +11,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentUserNameDialogBinding
-import com.example.buzidroidapplication.domain.settings_feature.Action
-import com.example.buzidroidapplication.domain.settings_feature.State
+import com.example.buzidroidapplication.ui.settings_feature.Action
+import com.example.buzidroidapplication.ui.settings_feature.State
+import com.example.buzidroidapplication.ui.settings_feature.SettingsFeatureViewModel
 import com.example.buzidroidapplication.ui.utils.collectLatestState
 import javax.inject.Inject
 

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Buzzi2</string>
+    <!--    Main screen-->
+    <string name="result">Результат</string>
+    <string name="settings">Настройки</string>
+    <string name="marker">Знак</string>
+    <string name="generate_random_mark">Сгенерировать случайный знак</string>
+    <string name="undo_action">Откатить</string>
+    <string name="erase_action">Стереть</string>
+    <string name="clear_action">Очистить</string>
+    <!--    Marker selection screen-->
+    <string name="marker_name">Назввание знака</string>
+    <string name="select_marker">Выберите Знак</string>
+    <!--    Result window-->
+    <string name="send_result">Отправить</string>
+    <string name="unknown_marker">Маркер не найден</string>
+    <string name="expected_answer">Ожидаемый ответ</string>
+    <string name="actual_answer">Фактический ответ</string>
+    <string name="correct_answer">ВЕРНО</string>
+    <string name="incorrect_answer">НЕ ВЕРНО</string>
+    <!--    Settings screen-->
+    <string name="settings_screen_title">Настройки</string>
+    <string name="user_name_title">Имя отправителя</string>
+    <string name="user_name_description">Имя, которым будет подписываться изображение при отправке на сервер</string>
+    <string name="prediction_mode_title">Режим угадывания</string>
+    <string name="prediction_mode_description">
+        Когда режим угадывания выключен, приложение будет использовать специальнуый набор знаков, который требуется для формирования обучающей выборки модели на сервере.
+        В ином случае, модель просто будет пытаться угадать знак, без возможности отправки изображения на сервер
+    </string>
+<!--    New username window-->
+    <string name="enter_user_name_title">Введите имя пользователя</string>
+    <string name="user_name_enter">Подтвердить</string>
+    <string name="user_name_cancel">Отменить</string>
+    <string name="no_user_name">Отсутствует</string>
+</resources>

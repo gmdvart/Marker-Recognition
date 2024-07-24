@@ -7,15 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.buzidroidapplication.R
 import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentSettingsScreenBinding
-import com.example.buzidroidapplication.domain.settings_feature.Action
-import com.example.buzidroidapplication.domain.settings_feature.State
+import com.example.buzidroidapplication.ui.settings_feature.Action
+import com.example.buzidroidapplication.ui.settings_feature.State
 import com.example.buzidroidapplication.ui.settings_feature.SettingsFeatureViewModel
-import com.example.buzidroidapplication.ui.settings_feature.UserNameDialogFragment
 import com.example.buzidroidapplication.ui.utils.collectLatestState
 import javax.inject.Inject
 
@@ -60,7 +58,7 @@ class SettingsScreenFragment : Fragment() {
                 progressBar.visibility = View.GONE
 
                 predictionModeSwitch.isChecked = state.isPredictionModeEnabled
-                userName.text = state.userName.ifBlank { "No user name" }
+                userName.text = state.userName.ifBlank { getString(R.string.no_user_name) }
 
                 settingsLayout.visibility = View.VISIBLE
             }
