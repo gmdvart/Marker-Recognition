@@ -2,7 +2,6 @@ package com.example.buzidroidapplication.ui.recognize_feature.screen
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.buzidroidapplication.R
@@ -21,9 +19,6 @@ import com.example.buzidroidapplication.ui.recognize_feature.Action
 import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
 import com.example.buzidroidapplication.ui.utils.collectLatestState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
@@ -97,6 +92,7 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
     private fun FragmentMainScreenBinding.setUpPainter() {
         paintView.viewTreeObserver.addOnGlobalLayoutListener(this@MainScreenFragment)
         undoButton.setOnClickListener { paintView.undo() }
+        eraseButton.setOnClickListener { Toast.makeText(requireContext(), "Not implemented yet", Toast.LENGTH_SHORT).show() }
         clearButton.setOnClickListener { paintView.clear() }
     }
 

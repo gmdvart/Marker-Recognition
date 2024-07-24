@@ -5,4 +5,5 @@
 <!--    App Theme Palette-->
     <color name="brand">#FFF3CB01</color>
     <color name="background">#FFE7E7E7</color>
+    <color name="dark_grey">#FF404040</color>
 </resources>

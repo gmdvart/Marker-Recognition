@@ -54,11 +54,10 @@ class ResultDialogFragment : DialogFragment() {
 
     private fun FragmentResultDialogBinding.setUpResultWindow(readyState: State.Ready) {
         val recognitionState = readyState.recognition
-        if (recognitionState is State.Recognition.Intent && !recognitionState.recognizing) {
+        if (recognitionState is State.Recognition.Intent && recognitionState.recognizedMarker != null) {
             progressBar.visibility = View.INVISIBLE
 
-            val isAnswerCorrect = recognitionState.recognizedMarker != null &&
-                    recognitionState.recognizedMarker.id == readyState.currentMarker.id
+            val isAnswerCorrect = recognitionState.recognizedMarker.id == readyState.currentMarker.id
 
             if (isAnswerCorrect) {
                 summaryTextView.setTextColor(Color.GREEN)
@@ -68,8 +67,7 @@ class ResultDialogFragment : DialogFragment() {
                 summaryTextView.text = getText(R.string.incorrect_answer)
             }
 
-            actualAnswerTextView.text = if (recognitionState.recognizedMarker == null) getString(R.string.unknown_marker)
-            else recognitionState.recognizedMarker.fullName
+            actualAnswerTextView.text = recognitionState.recognizedMarker.fullName
             expectedAnswerTextView.text = readyState.currentMarker.fullName
 
             resultLayout.visibility = View.VISIBLE
