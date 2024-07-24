@@ -11,12 +11,24 @@
                 app:destination="@+id/markerListScreenFragment"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action android:id="@+id/mainScreen_to_settingScreen"
+                app:destination="@+id/settingsScreenFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/markerListScreenFragment"
               android:name="com.example.buzidroidapplication.ui.recognize_feature.screen.MarkerListScreenFragment"
               android:label="fragment_marker_list_screen" tools:layout="@layout/fragment_marker_list_screen">
         <action android:id="@+id/markerListScreenFragment_to_mainScreenFragment"
                 app:destination="@id/mainScreenFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/settingsScreenFragment"
+              android:name="com.example.buzidroidapplication.ui.settings_feature.screen.SettingsScreenFragment"
+              android:label="fragment_settings_screen" tools:layout="@layout/fragment_settings_screen">
+        <action android:id="@+id/settingScreen_to_mainScreen"
+                app:destination="@+id/mainScreenFragment"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"/>
     </fragment>
