@@ -7,7 +7,9 @@ import java.io.FileInputStream
 import java.nio.ByteBuffer
 import java.nio.channels.FileChannel
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TensorFlowLiteModel @Inject constructor(
     private val context: Context
 ) {

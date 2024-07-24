@@ -10,9 +10,11 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import com.example.buzidroidapplication.APP_SETTINGS
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 object SettingsModule {
+    @Singleton
     @Provides
     fun providePreferencesDataStore(context: Context): DataStore<Preferences> {
         return PreferenceDataStoreFactory.create(

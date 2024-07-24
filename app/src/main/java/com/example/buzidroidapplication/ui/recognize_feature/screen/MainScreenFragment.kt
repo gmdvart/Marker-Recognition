@@ -17,6 +17,7 @@ import com.example.buzidroidapplication.databinding.FragmentMainScreenBinding
 import com.example.buzidroidapplication.ui.recognize_feature.Action
 import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
+import com.example.buzidroidapplication.ui.utils.collectLatestState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -64,6 +65,7 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
                     true
                 }
                 R.id.settings_item -> {
+                    findNavController().navigate(R.id.mainScreen_to_settingScreen)
                     true
                 }
                 else -> {
@@ -84,7 +86,7 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
             findNavController().navigate(R.id.mainScreen_to_markerListScreen)
         }
 
-        viewModel.state.collectLatestState { state ->
+        collectLatestState(viewModel.state) { state ->
             if (state is State.Ready)
                 markerImageView.load(state.currentMarker.drawableId) { crossfade(true) }
         }
@@ -102,14 +104,6 @@ class MainScreenFragment : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
             val width = paintCardView.measuredWidth
             val height = paintCardView.measuredHeight
             paintView.create(width, height)
-        }
-    }
-
-    private fun <T> Flow<T>.collectLatestState(callback: (T) -> Unit) {
-        lifecycleScope.launch {
-            collectLatest {
-                callback(it)
-            }
         }
     }
 

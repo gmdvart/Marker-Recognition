@@ -14,6 +14,7 @@ import com.example.buzidroidapplication.appComponent
 import com.example.buzidroidapplication.databinding.FragmentResultDialogBinding
 import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
+import com.example.buzidroidapplication.ui.utils.collectLatestState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -45,7 +46,7 @@ class ResultDialogFragment : DialogFragment() {
     }
 
     private fun FragmentResultDialogBinding.setUpState() {
-        viewModel.state.collectLatestState { state ->
+        collectLatestState(viewModel.state) { state ->
             if (state is State.Ready) {
                 setUpResultWindow(state)
                 setUpSendButton(state)
@@ -76,14 +77,6 @@ class ResultDialogFragment : DialogFragment() {
 
     private fun FragmentResultDialogBinding.setUpSendButton(readyState: State.Ready) {
         sendButton.isEnabled = readyState.isAbleToSendData
-    }
-
-    private fun <T> Flow<T>.collectLatestState(callback: (T) -> Unit) {
-        lifecycleScope.launch {
-            collectLatest {
-                callback(it)
-            }
-        }
     }
 
     companion object {

@@ -8,9 +8,11 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
+import javax.inject.Singleton
 
 @Module
 object NetworkModule {
+    @Singleton
     @Provides
     fun provideHttpClient(): HttpClient = HttpClient(Android) {
         install(Logging) {

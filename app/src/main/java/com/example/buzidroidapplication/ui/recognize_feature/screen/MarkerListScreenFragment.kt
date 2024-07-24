@@ -16,6 +16,7 @@ import com.example.buzidroidapplication.ui.recognize_feature.Action
 import com.example.buzidroidapplication.ui.recognize_feature.State
 import com.example.buzidroidapplication.ui.recognize_feature.RecognizeFeatureViewModel
 import com.example.buzidroidapplication.ui.recognize_feature.components.MarkerListViewController
+import com.example.buzidroidapplication.ui.utils.collectLatestState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -54,23 +55,15 @@ class MarkerListScreenFragment : Fragment() {
             findNavController().navigate(R.id.markerListScreenFragment_to_mainScreenFragment)
         }
 
-        viewModel.state.collectLatestState {
-            if (it is State.Ready)
-                markerListViewController.updateMarkerList(it.markerList)
+        collectLatestState(viewModel.state) { state ->
+            if (state is State.Ready)
+                markerListViewController.updateMarkerList(state.markerList)
         }
     }
 
     private fun FragmentMarkerListScreenBinding.setUpToolBar() {
         toolBar.setNavigationOnClickListener {
             findNavController().navigate(R.id.markerListScreenFragment_to_mainScreenFragment)
-        }
-    }
-
-    private fun <T> Flow<T>.collectLatestState(callback: (T) -> Unit) {
-        lifecycleScope.launch {
-            collectLatest {
-                callback(it)
-            }
         }
     }
 
