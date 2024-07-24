@@ -34,6 +34,7 @@ class RecognizeFeatureViewModel(
                     State.Ready(
                         !settings.predictionModeEnabled, // We can only send data when prediction mode is disabled
                         settings.userName,
+                        settings.localNetworkEnabled,
                         markerList,
                         randomMarker
                     )
@@ -130,7 +131,7 @@ class RecognizeFeatureViewModel(
                 recognizedMarker?.let {
                     recognizeFeatureUseCases
                         .sendData(
-                            url = MarkerHttpRoutes.GLOBAL_URL,
+                            url = if (readyState.isLocalNetworkModeEnabled) MarkerHttpRoutes.LOCAL_URL else MarkerHttpRoutes.GLOBAL_URL,
                             fileName = readyState.currentMarker.fileName,
                             userName = readyState.userName,
                             bitmap = readyState.recognition.bitmap,

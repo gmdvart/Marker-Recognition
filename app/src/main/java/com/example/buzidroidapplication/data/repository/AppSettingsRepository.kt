@@ -19,8 +19,9 @@ class AppSettingsRepository @Inject constructor(
         .map { preferences ->
             val predictionModeEnabled = preferences[PreferencesKeys.PREDICTION_MODE_ENABLED] ?: true
             val userName = preferences[PreferencesKeys.USER_NAME] ?: ""
+            val localNetworkEnabled = preferences[PreferencesKeys.LOCAL_NETWORK_ENABLED] ?: true
 
-            AppSettings(userName, predictionModeEnabled)
+            AppSettings(userName, predictionModeEnabled, localNetworkEnabled)
         }
 
     suspend fun updateUserName(userName: String) {
@@ -35,13 +36,21 @@ class AppSettingsRepository @Inject constructor(
         }
     }
 
+    suspend fun updateLocalNetworkMode(localNetworkEnabled: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[PreferencesKeys.LOCAL_NETWORK_ENABLED] = localNetworkEnabled
+        }
+    }
+
     data class AppSettings(
         val userName: String,
-        val predictionModeEnabled: Boolean
+        val predictionModeEnabled: Boolean,
+        val localNetworkEnabled: Boolean
     )
 
     private object PreferencesKeys {
         val USER_NAME = stringPreferencesKey("user_name")
         val PREDICTION_MODE_ENABLED = booleanPreferencesKey("prediction_mode_enabled")
+        val LOCAL_NETWORK_ENABLED = booleanPreferencesKey("local_network_enable")
     }
 }

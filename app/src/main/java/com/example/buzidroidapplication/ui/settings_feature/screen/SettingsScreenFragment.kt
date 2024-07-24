@@ -46,11 +46,14 @@ class SettingsScreenFragment : Fragment() {
         toolBar.setNavigationOnClickListener {
             findNavController().navigate(R.id.settingScreen_to_mainScreen)
         }
-        predictionModeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.onAction(action = Action.Switch(isChecked))
-        }
         userName.setOnClickListener {
             UserNameDialogFragment.newInstance().show(parentFragmentManager, UserNameDialogFragment.TAG)
+        }
+        predictionModeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.onAction(action = Action.SwitchAppMode(isChecked))
+        }
+        networkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.onAction(action = Action.SwitchNetworkMode(isChecked))
         }
 
         collectLatestState(viewModel.state) { state ->
@@ -58,6 +61,7 @@ class SettingsScreenFragment : Fragment() {
                 progressBar.visibility = View.GONE
 
                 predictionModeSwitch.isChecked = state.isPredictionModeEnabled
+                networkModeSwitch.isChecked = state.isLocalNetworkModeEnabled
                 userName.text = state.userName.ifBlank { getString(R.string.no_user_name) }
 
                 settingsLayout.visibility = View.VISIBLE

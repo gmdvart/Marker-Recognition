@@ -58,6 +58,7 @@ class ResultDialogFragment : DialogFragment() {
             progressBar.visibility = View.INVISIBLE
 
             val isAnswerCorrect = recognitionState.recognizedMarker.id == readyState.currentMarker.id
+                    || recognitionState.recognizedMarker.fullName == readyState.currentMarker.fullName
 
             if (isAnswerCorrect) {
                 summaryTextView.setTextColor(Color.GREEN)

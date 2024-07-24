@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Buzzi2</string>
+    <string name="app_name">Buzzi</string>
     <!--    Main screen-->
     <string name="result">Result</string>
     <string name="settings">Settings</string>
@@ -29,6 +29,7 @@
         to train model and send prediction result to the server.
         Otherwise, (when the mode is disabled) model will just try to predict a marker you drawn
     </string>
+    <string name="network_mode_title">Local network</string>
 <!--    New username window-->
     <string name="enter_user_name_title">Enter a new username</string>
     <string name="user_name_enter">Enter</string>

@@ -9,6 +9,7 @@ sealed interface State {
     data class Ready(
         val isAbleToSendData: Boolean,
         val userName: String,
+        val isLocalNetworkModeEnabled: Boolean,
         val markerList: List<MarkerUiModel>,
         val currentMarker: MarkerUiModel,
         val recognition: Recognition = Recognition.NotStarted,

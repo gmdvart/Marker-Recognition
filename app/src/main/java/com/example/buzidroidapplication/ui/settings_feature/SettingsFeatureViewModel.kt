@@ -23,6 +23,7 @@ class SettingsFeatureViewModel(
                 _state.update {
                     State.Ready(
                         settings.userName,
+                        settings.localNetworkEnabled,
                         settings.predictionModeEnabled
                     )
                 }
@@ -37,8 +38,11 @@ class SettingsFeatureViewModel(
 
     private suspend fun performAction(action: Action) {
         when (action) {
-            is Action.Switch -> {
+            is Action.SwitchAppMode -> {
                 settingsFeatureUseCases.switchAppMode(action.checked)
+            }
+            is Action.SwitchNetworkMode -> {
+                settingsFeatureUseCases.switchNetworkMode(action.checked)
             }
             is Action.EnterName -> {
                 settingsFeatureUseCases.writeUserNameUseCase(action.newUserName)
