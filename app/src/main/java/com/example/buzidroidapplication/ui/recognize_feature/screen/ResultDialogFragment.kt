@@ -48,15 +48,17 @@ class ResultDialogFragment : DialogFragment() {
         viewModel.state.collectLatestState { state ->
             if (state is State.Ready) {
                 setUpResultWindow(state)
+                setUpSendButton(state)
             }
         }
     }
 
     private fun FragmentResultDialogBinding.setUpResultWindow(readyState: State.Ready) {
-        if (!readyState.isRecognizing && readyState.recognizedMarker != null) {
+        val recognitionState = readyState.recognition
+        if (recognitionState is State.Recognition.Intent && recognitionState.recognizedMarker != null) {
             progressBar.visibility = View.INVISIBLE
 
-            val isAnswerCorrect = readyState.recognizedMarker.id == readyState.currentMarker.id
+            val isAnswerCorrect = recognitionState.recognizedMarker.id == readyState.currentMarker.id
             if (isAnswerCorrect) {
                 summaryTextView.setTextColor(Color.GREEN)
                 summaryTextView.text = getText(R.string.correct_answer)
@@ -65,11 +67,15 @@ class ResultDialogFragment : DialogFragment() {
                 summaryTextView.text = getText(R.string.incorrect_answer)
             }
 
-            actualAnswerTextView.text = readyState.recognizedMarker.fullName
+            actualAnswerTextView.text = recognitionState.recognizedMarker.fullName
             expectedAnswerTextView.text = readyState.currentMarker.fullName
 
             resultLayout.visibility = View.VISIBLE
         }
+    }
+
+    private fun FragmentResultDialogBinding.setUpSendButton(readyState: State.Ready) {
+        sendButton.isEnabled = readyState.isAbleToSendData
     }
 
     private fun <T> Flow<T>.collectLatestState(callback: (T) -> Unit) {

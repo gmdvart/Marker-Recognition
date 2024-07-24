@@ -15,10 +15,15 @@ class SendDataUseCase @Inject constructor(
     suspend operator fun invoke(
         url: String,
         fileName: String,
-        bitmap: Bitmap
+        bitmap: Bitmap,
+        isRecognitionCorrect: Boolean
     ): Flow<MarkerSendResult> = flow {
+        emit(MarkerSendResult.Idle)
+
+        val suffix = if (isRecognitionCorrect) "_Pos_" else "_Neg_"
+
         val byteArray = imageCompressor.compressImage(bitmap)
-        val result = markerService.sendMarker(url = url, fileName = fileName, bodyByteArray = byteArray)
+        val result = markerService.sendMarker(url = url, fileName = suffix + fileName, bodyByteArray = byteArray)
 
         when (result) {
             is MarkerService.Result.Success<*> -> { emit(MarkerSendResult.Success) }

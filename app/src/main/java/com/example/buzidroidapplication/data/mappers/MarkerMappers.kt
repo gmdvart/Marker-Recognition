@@ -7,5 +7,6 @@ fun MarkerModel.toMakerUiModel(): MarkerUiModel =
     MarkerUiModel(
         id = id,
         drawableId = drawableId,
-        fullName = info.fullName
+        fullName = info.fullName,
+        fileName = info.fileName
     )
