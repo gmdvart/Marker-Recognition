@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Buzzi2</string>
+    <string name="app_name">Buzzi</string>
     <!--    Main screen-->
     <string name="result">Результат</string>
     <string name="settings">Настройки</string>
