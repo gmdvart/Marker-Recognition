@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.recognize_feature.screen.MainScreenFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                app:title="@string/app_name"
+                app:menu="@menu/top_bar_menu"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/marker_preview_card_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+            app:layout_constraintStart_toEndOf="@+id/paint_card_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+            app:layout_constraintBottom_toTopOf="@id/random_mark_image_button">
+
+        <ImageView
+                android:id="@+id/marker_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/marker"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin"
+                tools:src="@drawable/avtomobil"/>
+    </androidx.cardview.widget.CardView>
+
+    <ImageButton
+            android:id="@+id/random_mark_image_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/generate_random_mark"
+            android:background="@drawable/random_mark_button"
+            android:layout_margin="@dimen/margin"
+            android:padding="@dimen/padding"
+            android:src="@drawable/question"
+            app:layout_constraintStart_toEndOf="@id/paint_card_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/paint_card_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+            app:layout_constraintDimensionRatio="1"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintStart_toEndOf="@+id/tool_bar_card_view"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.example.buzidroidapplication.ui.recognize_feature.components.PaintView
+                android:id="@+id/paint_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tool_bar_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin"
+            android:padding="@dimen/padding"
+            android:background="@drawable/tool_tab_background"
+            android:elevation="@dimen/elevation"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+                android:id="@+id/undo_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/undo_action"
+                android:background="@null"
+                android:src="@drawable/undo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/erase_button"/>
+
+        <ImageButton
+                android:id="@+id/erase_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/erase_action"
+                android:background="@null"
+                android:src="@drawable/ink_eraser"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/undo_button"
+                app:layout_constraintBottom_toTopOf="@+id/clear_button"/>
+
+        <ImageButton
+                android:id="@+id/clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/clear_action"
+                android:background="@null"
+                android:src="@drawable/close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/erase_button"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
