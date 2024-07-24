@@ -1,4 +1,4 @@
-package com.example.buzidroidapplication.domain.settings_use_case
+package com.example.buzidroidapplication.domain.use_cases.settings
 
 import com.example.buzidroidapplication.data.repository.AppSettingsRepository
 import kotlinx.coroutines.flow.Flow

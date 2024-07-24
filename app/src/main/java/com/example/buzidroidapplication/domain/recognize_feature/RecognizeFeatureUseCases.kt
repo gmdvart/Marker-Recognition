@@ -1,11 +1,11 @@
 package com.example.buzidroidapplication.domain.recognize_feature
 
-import com.example.buzidroidapplication.domain.markers_use_case.GetMarkerByIdUseCase
-import com.example.buzidroidapplication.domain.markers_use_case.GetMarkersUseCase
-import com.example.buzidroidapplication.domain.markers_use_case.GetRandomMarkerUseCase
-import com.example.buzidroidapplication.domain.network_use_case.SendDataUseCase
-import com.example.buzidroidapplication.domain.neural_use_case.GetPredictionIndexUseCase
-import com.example.buzidroidapplication.domain.settings_use_case.GetAppSettingsUseCase
+import com.example.buzidroidapplication.domain.use_cases.markers.GetMarkerByIdUseCase
+import com.example.buzidroidapplication.domain.use_cases.markers.GetMarkersUseCase
+import com.example.buzidroidapplication.domain.use_cases.markers.GetRandomMarkerUseCase
+import com.example.buzidroidapplication.domain.use_cases.network.SendDataUseCase
+import com.example.buzidroidapplication.domain.use_cases.neural.GetPredictionIndexUseCase
+import com.example.buzidroidapplication.domain.use_cases.settings.GetAppSettingsUseCase
 import javax.inject.Inject
 
 data class RecognizeFeatureUseCases @Inject constructor(

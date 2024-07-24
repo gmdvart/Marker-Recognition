@@ -1,4 +1,4 @@
-package com.example.buzidroidapplication.domain.markers_use_case
+package com.example.buzidroidapplication.domain.use_cases.markers
 
 import com.example.buzidroidapplication.data.mappers.toMakerUiModel
 import com.example.buzidroidapplication.di.DsMarkers
@@ -7,14 +7,14 @@ import com.example.buzidroidapplication.domain.model.MarkerUiModel
 import com.example.buzidroidapplication.domain.repository.MarkerRepository
 import javax.inject.Inject
 
-class GetMarkersUseCase @Inject constructor(
+class GetMarkerByIdUseCase @Inject constructor(
     @param:DsMarkers private val dsMarkerRepository: MarkerRepository,
     @param:NeedMarkers private val needMarkerRepository: MarkerRepository
 ) {
-    operator fun invoke(isPredictionMode: Boolean = false): List<MarkerUiModel> {
-        val markers = if (isPredictionMode) dsMarkerRepository.getAllMarkers()
-        else needMarkerRepository.getAllMarkers()
+    operator fun invoke(id: Int, isPredictionMode: Boolean = false) : MarkerUiModel? {
+        val marker = if (isPredictionMode) dsMarkerRepository.getMarkerById(id)
+        else needMarkerRepository.getMarkerById(id)
 
-        return markers.map { it.toMakerUiModel() }
+        return marker?.toMakerUiModel()
     }
 }

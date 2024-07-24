@@ -1,4 +1,4 @@
-package com.example.buzidroidapplication.domain.network_use_case
+package com.example.buzidroidapplication.domain.use_cases.network
 
 import android.graphics.Bitmap
 import com.example.buzidroidapplication.data.network.ImageCompressor

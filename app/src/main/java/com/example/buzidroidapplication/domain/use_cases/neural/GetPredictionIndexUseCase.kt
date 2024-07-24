@@ -1,7 +1,6 @@
-package com.example.buzidroidapplication.domain.neural_use_case
+package com.example.buzidroidapplication.domain.use_cases.neural
 
 import android.graphics.Bitmap
-import android.util.Log
 import com.example.buzidroidapplication.data.neural.ImagePreparer
 import com.example.buzidroidapplication.data.neural.TensorFlowLiteModel
 import kotlinx.coroutines.flow.Flow
