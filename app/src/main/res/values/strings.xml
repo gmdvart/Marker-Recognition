@@ -20,11 +20,16 @@
     <!--    Settings screen-->
     <string name="settings_screen_title">Settings</string>
     <string name="user_name_title">User name</string>
-    <string name="user_name_description">User name that will be shown when sending an image file \nto the server</string>
+    <string name="user_name_description">User name that will be shown when sending an image file \nto the server
+    </string>
     <string name="prediction_mode_title">Prediction mode</string>
     <string name="prediction_mode_description">
         In prediction mode app will use a special marker dataset which is needed
         to train model and send prediction result to the server.
         Otherwise, (when the mode is disabled) model will just try to predict a marker you drawn
     </string>
+<!--    New username window-->
+    <string name="enter_user_name_title">Enter a new username</string>
+    <string name="user_name_enter">Enter</string>
+    <string name="user_name_cancel">Cancel</string>
 </resources>

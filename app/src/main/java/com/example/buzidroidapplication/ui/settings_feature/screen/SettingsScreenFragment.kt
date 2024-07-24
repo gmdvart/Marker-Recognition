@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.buzidroidapplication.R
@@ -14,6 +15,7 @@ import com.example.buzidroidapplication.databinding.FragmentSettingsScreenBindin
 import com.example.buzidroidapplication.domain.settings_feature.Action
 import com.example.buzidroidapplication.domain.settings_feature.State
 import com.example.buzidroidapplication.ui.settings_feature.SettingsFeatureViewModel
+import com.example.buzidroidapplication.ui.settings_feature.UserNameDialogFragment
 import com.example.buzidroidapplication.ui.utils.collectLatestState
 import javax.inject.Inject
 
@@ -21,7 +23,7 @@ class SettingsScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsScreenBinding
 
-    private val viewModel by viewModels<SettingsFeatureViewModel> { factory }
+    private val viewModel by activityViewModels<SettingsFeatureViewModel> { factory }
     @Inject
     lateinit var factory: SettingsFeatureViewModel.Factory
 
@@ -48,6 +50,9 @@ class SettingsScreenFragment : Fragment() {
         }
         predictionModeSwitch.setOnCheckedChangeListener { _, isChecked ->
             viewModel.onAction(action = Action.Switch(isChecked))
+        }
+        userName.setOnClickListener {
+            UserNameDialogFragment.newInstance().show(parentFragmentManager, UserNameDialogFragment.TAG)
         }
 
         collectLatestState(viewModel.state) { state ->
